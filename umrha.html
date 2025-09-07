@@ -1,0 +1,250 @@
+<!-- !DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Umrah Mubarak - Rizwan & Rimsha</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      color: white;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    /* Hero Section with combo background */
+    .hero {
+      height: 100vh;
+      background: linear-gradient(to right, rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+        url("https://images.unsplash.com/photo-1584118624012-df056829fbd0") left center / cover no-repeat,
+        url("https://images.unsplash.com/photo-1588099768531-34a5b6a98971") right center / cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+    }
+
+    /* Countdown badge */
+    .countdown {
+      background: rgba(255, 255, 255, 0.2);
+      border: 2px solid white;
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    /* Certificate Section */
+    .certificate {
+      background: #f5f5f5;
+      color: #333;
+      padding: 40px 20px;
+    }
+
+    .certificate h2 {
+      font-size: 2rem;
+      margin-bottom: 15px;
+    }
+
+    .certificate p {
+      font-size: 1.2rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero {
+        background: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+          url("https://images.unsplash.com/photo-1584118624012-df056829fbd0") top center / cover no-repeat,
+          url("https://images.unsplash.com/photo-1588099768531-34a5b6a98971") bottom center / cover no-repeat;
+      }
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .hero p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <h1>🌙 الحمدللہ! عمرہ مبارک</h1>
+    <p>رضوان چاچو اور رمشا آپی کو دل سے دعائیں</p>
+    <div class="countdown" id="countdown"></div>
+  </section>
+
+  <section class="certificate">
+    <h2>🎉 مبارکباد کا سرٹیفکیٹ</h2>
+    <p>
+      یہ خوشی کا موقع ہے کہ <strong>رضوان چاچو</strong> اور <strong>رمشا آپی </strong> 
+      عمرہ کی سعادت حاصل کر کے 13 ستمبر 2025 کو وطن واپس آ رہے ہیں۔
+    </p>
+  </section>
+
+  <script>
+    // Countdown Script
+    const targetDate = new Date("Sep 13, 2025 00:00:00").getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance < 0) {
+        document.getElementById("countdown").innerHTML = "🌸 خوش آمدید! آپ واپس آ گئے ہیں 🌸";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("countdown").innerHTML =
+        `واپسی میں باقی وقت: ${days} دن ${hours} گھنٹے ${minutes} منٹ ${seconds} سیکنڈ`;
+    }
+
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html> -->
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Umrah Mubarak - Rizwan & Rimsha</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+      text-align: center;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* 🔹 Background Slideshow */
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      animation: bgSlide 16s infinite;
+      z-index: -2;
+    }
+
+    /* Gradient Overlay for readability */
+    body::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: -1;
+    }
+
+    @keyframes bgSlide {
+      0%   { background-image: url('https://upload.wikimedia.org/wikipedia/commons/0/0b/Kaaba_Masjid_al-Haram_Makkah.jpg'); }
+      50%  { background-image: url('https://upload.wikimedia.org/wikipedia/commons/4/44/Prophet_Mosque_Madina.jpg'); }
+      100% { background-image: url('https://upload.wikimedia.org/wikipedia/commons/0/0b/Kaaba_Masjid_al-Haram_Makkah.jpg'); }
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      text-shadow: 0 0 15px gold, 0 0 30px #ffdd00;
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #ffdd00, 0 0 20px #ffa500; }
+      to   { text-shadow: 0 0 20px #ffffff, 0 0 40px #ffdd00; }
+    }
+
+    #countdown {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-top: 10px;
+      padding: 10px 20px;
+      border: 2px solid gold;
+      border-radius: 15px;
+      background: rgba(255, 215, 0, 0.2);
+      display: inline-block;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    footer {
+      position: absolute;
+      bottom: 15px;
+      font-size: 1rem;
+      color: #ddd;
+    }
+  </style>
+</head>
+<body>
+  <h1>🌙 الحمدللہ! عمرہ مبارک 🌙<br>RIZWAN CHACHU</h1>
+  <div id="countdown"></div>
+
+  <footer>Designed with ❤️ by Hasnain</footer>
+
+  <script>
+    // Countdown Timer
+    const countdown = document.getElementById("countdown");
+    const targetDate = new Date("Sep 13, 2025 00:00:00").getTime();
+
+    const timer = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance < 0) {
+        clearInterval(timer);
+        countdown.innerHTML = "🎉 خوش آمدید Chachu Rizwan & Chachi Rimsha 🎉";
+      } else {
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        countdown.innerHTML = 
+          days + " دن " + hours + " گھنٹے " + minutes + " منٹ " + seconds + " سیکنڈ باقی ہیں";
+      }
+    }, 1000);
+  </script>
+</body>
+</html>

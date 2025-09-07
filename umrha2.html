@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>عمرہ مبارک — Family Welcome Page</title>
+  <meta name="description" content="A beautiful welcome page for a returning Umrah pilgrim — includes dua cards, tasbih counter, photo gallery, and a printable certificate." />
+  <style>
+    :root{
+      --bg:#0f172a;          /* slate-900 */
+      --surface:#111827;     /* gray-900 */
+      --muted:#1f2937;       /* gray-800 */
+      --text:#e5e7eb;        /* gray-200 */
+      --subtle:#9ca3af;      /* gray-400 */
+      --brand:#22c55e;       /* green-500 */
+      --brand-2:#14b8a6;     /* teal-500 */
+      --accent:#f59e0b;      /* amber-500 */
+      --ring:#10b981;        /* emerald-500 */
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Noto Naskh Arabic UI, "Noto Naskh Arabic", Arial, sans-serif;
+      background: radial-gradient(1200px 600px at 80% -10%, #1e293b 0%, var(--bg) 60%), var(--bg);
+      color:var(--text); line-height:1.6; 
+    }
+    a{color:inherit}
+    .container{max-width:1100px; margin-inline:auto; padding:24px}
+    .card{background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.02)); border:1px solid rgba(255,255,255,.06); border-radius:20px; padding:24px; box-shadow: 0 10px 30px rgba(0,0,0,.25)}
+
+    /* Navbar */
+    .nav{position:sticky; top:0; z-index:50; backdrop-filter: blur(8px); background: rgba(17,24,39,.6); border-bottom:1px solid rgba(255,255,255,.08)}
+    .nav .inner{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:12px 24px}
+    .nav a{padding:8px 12px; border-radius:12px; text-decoration:none; color:var(--text)}
+    .nav a:hover{background:rgba(255,255,255,.06)}
+
+    /* Hero */
+    .hero{position:relative; overflow:hidden; border-radius:28px; padding:48px; display:grid; gap:18px; background:
+      radial-gradient(1000px 500px at 0% -10%, rgba(34,197,94,.25), transparent 60%),
+      radial-gradient(900px 400px at 100% 0%, rgba(245,158,11,.25), transparent 60%),
+      url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAJQApAMBIgACEQEDEQH/xAAcAAABBQEBAQAAAAAAAAAAAAAFAAMEBgcBAgj/xAA9EAABAwMDAQUGBQIEBgMAAAABAgMEAAURBhIhMRMiQVFhBxQycYGRFSOhscFCUiRy0eEWQ1Ni8PEzNIL/xAAbAQACAwEBAQAAAAAAAAAAAAACAwABBAUGB//EACwRAAEEAQMDAwQBBQAAAAAAAAEAAgMRBBIhMRNBUQUUMiJCYXFSIyRTgbH/2gAMAwEAAhEDEQA/ANFe7i+4oY8hTalFXjTKVhfwr3U4K00Rykl18Lm0V0UqRwOtUqC44Mp9KjmOyeSOc1JyD05rw48lCSNuaFzj2TAB3TKUMA424qWhtC0jYrHpioro3sbkDarFQkfiCjhLgHyFU1mvvSjnhu1Wnb7CjPQXO1AykHBxWXSUBLywOm41er1CurjRS24FA9R0qqqss9S8Fo5r1PpDmxRHW+1ws4l8mzKQk0lYx45o/G0xMcUO0SE8+Jqx23R7CVD3g5zz6Vvm9Sx4uXJMeNK/4hZ3jxGa9Y4q+ah0xGbjKehEhSOoqkqbPNOxctmSzUxDJE6N2lwUcgdfCkkZAx40W09aRdrs1EWspQUqWojrhIJ4oewgFAPXwz8uKPrt6pj71amj6dS8hBFegnzqQEZGK8luj1oaCjk4yacQMgUTbszzsV1SUBS0tFZBOAgfPHWoaAlYSpIwCOADSmztc4tHZVW1rxtpVI7JWPhpVfUCBav+HhC1OsZSP7TXChxPxCpTjySCEnio776ezwPCvnokeT9S9aWNA+lNkgYzSUcioC3VFY8BUhLiNmAqmkWEocrkiQAnakYOKjtPpCxuJOeoNPkx0pUXV8kcEUNygOHvfWhb4REkbouZaduAnivUeQkdE803BVHI76gcDxpq6z4zEZZZTlzbxiqZEZHaGhXJK2Nhc4p6TLbkjsjkYPQVxcdkY7JHhyTVbs6335m4lSknqfKrKpK0eBxWrJx/buDQ5ZsacZALyEmmRuBqeAlCQSfCokd5onapWD6mnpEiOwCXFZAHjWN7Xk1S1B7Wi0O1NIbZtytgHaKGAazYs8k+Jqz36d72+dnDaelBuz3nivW+mxHHho8lefyputISntKwnHb/ABQ2opOHDlPlsVQyFFV7u3x/SKuOi46O2mvrJStqP3FpPgrgjH0qtWNKnoSysDDby2xySTtURk58eKX7y89zK+0f9VaCMcSfml5LGBz09KlQIbR/xD5H5fRPgafcbSgZWrApbMI2gdetbXSFwoLOReyeYU6+Lj7uTkwXM5HXjjAoDGaT2aMYI2jFXHTsfFsu8kBO5KA1lZ7oGMnpzn9OlVC1EvW9pR6jKeuenH8Vhx8hpypIh2ATjEWwtd5JRKLLEdrYGkqGc5NKmAjHWlW0saTaSFpQbSgY5256mo0jYD3OtPrdSUny8KHu7txKR9q8YASvUkgBeHo7hQXOcdM1CJWO6DUwvPlHZ97HlXmJCcfdCVEN58VcUV1yhP4UaNGemyUR0EAqJ5UeAKbdjLZeW2rClIOCUnIPrRlbsS1SkqU4hK0pJAc6q6DIA5/qH3qOwqNKecDayo7lKKk4wOfHy60kTDqIix1IWVKBwDiubNxyqiUqEls5byRjJz4VEDSghS8Hanqa2MeeyQ/T3Cei/kkFOB6mibKXpwU2ytIUkbipR46iqy7cNpUkJ4HiaLWWc1Db96febJW2cJV1SMgH59RRZcJji6khpIgyWSSdONQrulx0EMOBt0HqKFPondglUx7cnOBz1ohmKJTim3e0QhRHdxgfb50w60ZEhRaPdA6Zrq4bwY2kceVzswEuIPPi1FjwX5mQygFKTjcTgU+zZJpBUUIbT5qOf2orZ2zGUpCyOe9iiri1EgJGUDqKkuY9ry1vCjcYGOyd03py27bdJUy4e3Kih0gAZHgOQeOtUeysPJul1bOPcw+rs9oHCsnd0HXJrSGHuziOBpfZbwrkeBxxQCwxIKrZcJU1xDbQuMk784wQ4R+u2vPMza9Tc5x2A3XQdBfp4/aEzoaXGdgUEk/1HoPWjzmnG+xBbeIWBj0qn6ovjbyl+7pUiGTt3rSQVnwwB0Hjz40Q01rphxDdtvKuwmDuNvnhD3lk/wBJ+fWtbfV2yzaWO2XOZCwxEjlWlu2djp4tpQpxeFBxA2gOKzxnIOcACs20804EzFOZ2mSsIST0weR0HrWiyXZD9vUhheBnBPr2jf8AGfvVb0ZFaW1KcebB3Sn8bhnq4rn7VnwJ3D1GVzit88f9jGAN1GdebUrKmGgcdM0qukSBGjMhttBxknKgFH70q7h9QjG1LIMF5HKJmA2nCU9AP6vOob8VTayEjIPiKJ+8IUCVGobjpWcA4SOSSelebDnL0LmtAUIpW0obgQD5ind+4p2K5FBb5rOyW9Cm1zkPPD/lsJ7Q/ccD6mqNc/aNKWoptkZDKf8AqPd5X0A4H60wG+Uvjha2Uxn23HZiYYQlOCuQMjBxkfLOKqFw1pYrY7JBeDzhWfy4ic7jn+7oPvWTXO93K5qBnzXngOiVK7o+SRx+lDs+tL0AG0XKvF39pc+QSi2x2oqP7199f+g+xoDF9o1+jOLZfdalsFRJS6jnHkCOlAVnNDHv/nX/AJqYHkG0BaDsVpcHWVsmKHvPaR3D13jcn7itL0eu3zrS8vMN1DRIU6s7gUnB+mMCvmkGpUKbJguh2HIdYcH9TaiPv6VpnzHzw9N6xwYMcEvUjW73xLbdweQ00hv8w7tgwFHzqCk7TlOQfSs8ia/uiXAq4BuZ/cpQ2rPrkePPlVv03rawvSW/eZBhueAfbynP+YcD610cTLhjxwzuFgyMKaScurYlHlolsLSVBxPGc+lPxpTqeStSgfA1YBLjzY35S23Wlj4m1Ag/UUBukVVrjrfJC2gOFJ/QYomZccjCZBVJOTA7HNg2ESn3KHBiNKJW7II3JaSrHOfHyHFUaU7ImPKQpZCC4t4o3YSCtRUcfMmnI4LxcU4Qpau8T5ZppTqWnVKJSQpZGMZwBx/FfO8vKdNO9w4QyZD5YwCaaOybkuoCCnaCkA8fL/w1XriltxCgpAII8amy5uFLJxyMdPWhEqWkqUOMZV+9HjxuG6ZjgIrYNdS7CwIMgGVAUsHs1K7zWCD3T4jjofLjFaNo26xblAX7sQthsBSXem/cVZGPAjAyKwi5OJXuI4A3Y/8APrR/2XX1VrvHuinMRppCFeSV/wBJ/XH1ru4zaeH3uV2Af6Gk7rd+2SngGlQ8PDHxV2ukWG1Qc2l29zzbLPNmowVsMqWkK6ZA4/WsPueorrdT/jpzrif+mDtQP/yOK1XXjym9JXMnxaCfuoD+aw/eE5yQMdc1lOwT+Sn9wHA4HpXCupUW03OaAqLBeWD0O3aD9VYFGY+ibm5gyFNMJPruI+fQfrWaTKhj+bgnxwSO4CrRVXgrHTNaFC0DBRtXMkPP+BQFBGftz1460QRA03akhTqYbDnGS4Qf1/3rC/1WLiMFy0jCf9xpZpHhy5f/ANaM85njutnH36VDnWm5RXFdvCfRz/bn9q1KTq+wRu606HSBwGm1LBPzxj9aBnVNoeeUH+1ZJVnLrZB+488VGZuQ430jSI40IHzWdA163DNaSE2K553GK4spIGcHn5/pUKVouHJ3LhqW1jwSvIJ+R6fenNz4+HgtQHDd9pBVEJpZ4qwTdH3CMCWyhwDwzg0FlW+bEJEmM4j1Iz+1amTxv+JWd0L2chWH2azn42r7e026tLLqlpW2FHaruHqPniti1PJYXbG4zrmO0cCiOhIH++KwzRLhRq21Ede3A+4xWn6ruDLc5lop7RxqKVHJxyVYA/SiyyfZO088Ll5Yt1UuNpistuKYUVKHJV6Z/wBqisqYfaZbIcKj3iQMcnnx+1RnJijA7im0yyo4QVZ7uTz9q8srkNWdch5aEuo6YGcDHHSvLiIgb+VgDBwFHmRoiG+92wXwQkYJHPnUC4xoLZ2JDwJ7TKicnwx4V6MmY642p2S0EKTjjjx9B8qH3CRIEl9tMxKVYGBvXzwfHFb4Y3XVp0UYDqCHXD8MG5CPe0Kycbgk5yPpQ+GtEac2404SlCwQSnBojOTIMYurfacA4wXtxHrihDJWlSVbMnI6V1ojQtdFgttL6AhyxKjNvMuhba0gpUnoaVRtCzmXNMRNzDRKdwJKevJP812uw3KZW4WU4zvKm6mtyLpZ3YknellS0FakEA8KB6/Sqo0dH6fIP+H7UcDcjtHP5NTPaLPak6SdJQGnUuoU2GnchfOB8xg5x6VSLRd7PZbrLkNsLkM9mhDKFJ6qwNysnpz+9eYyo3z28E0Ow7rvQFsQAIF+VZn9ZdhFU7CtkpxlsDc46Ng5OBycnrig8vVF9kyYbPZNQ0y0BbSwkqJQokZ/Q8YqBqHWDl3grgohtsMqIOUrJPByPCgj93nPPxpCpCg7GbS2yof0JHT96HHwGhupzAD+TaOXK3pritC/4bnSEJNzv0wpUcdm2vs0/pVP1bbrbbbnHjw3Flot5ed37iTuIOPLgdKCyJ0uQfzpT7nopwkfvUY89afj4srHanP/ANAUgmyGPFNarEiZbIurmZUVRbt7awdyUE4G3BwOp5/eo2sbpCu11akRVuKZ2BKkqbKdne5x9KD8HwqM4e+T61pGO0PD73ApIMxIIrlWOPFtE7Ub7LC0phKRuQrJTsPHTpR4aUlttJdtV3dI67VEkfSs83Gn486VGOY8h1rH9qyKXLjyOosfX73TWTsA+pqsyL5eYhlOLS3IRFX2bjihggk4/ii6tRrQc3S2SI5wMuIG5Pz4qjfikwtSmi8SiWoKfGPjIOQfvVlh67dQ0hiVb2XW0pCe6og4HzpE+LsC1gP6NJsWQL3dSOQndPzLlFmxHGUSUPIWABhWc/eos2JdJlwdWzCkuDtVDd2Z5yo4GaBwZ9tdvyJjjYClTkOJC090JxznHkrBrZ9S35UuyRRanQ1NbkpDqQk/lghSScY5Tgk/KhfGY2gE7flZMiAZJB8eFnidO6kknDVqk5SkBXAz5+dT16Z1Q/bChq2rLa1D4jyR8q1SHOs1tgNQYjrTSGuFbEEbiMgk8dcpPPpTxvEA8e+IHPhkeOKyPcNVJLfTGd1io0VqkK3fhrpPAGTwKHXTSGo0SFuvW51CcDJyOMCt0fuLMpKWYNyaZW5/ziNxSDjoD494feqNqRFztstMq26lnv7iSCXyrPdCvh6YPHh41phcT9WoBN9nGw/ErM5ViuxjrHu4CSB1cSP5oMq0XJnvriPbASO0AynI694cVvWltQfiDD0S/Mx25LIC0v8AZgJfQepx4KHj86mXiTHNluDUNxlbnYOFlvAI34URgH1B4pYz5I36C277hPGKwN22WPWmU8xCShXaIIPw5IpVav8AhWYlttxK4G91AW6jAAQvoUj5YpV1ROK4SDEPKpUy4iVpOGyVrUtua4cKxwnYMfvQPcaJ3ayzrHCjtXSOuPJedcUG1Y+BISAfvn7UJprQA2ggJsr0TXDmvNLNFwou5xSzXDnNLFUovQqMv4j86k1FX8RqlFyuA8UqVRRLNegeK80s1FE6wsNvNuK6JWCfkDX0srTtlWhMk3B8donI2oVzx6fOvmXPFb7db4l3Rtjfaw1IkI2L2nG0oR38YPGVbaz5DQ4bhMjcW8FHjp2z7N/4o/g55CVdfL9TXU6dtJRvF1k+GThXBqvNakanezozGyG5jTpYUrcASQclX1T414tepEPezS5TniPfIuRuPUkkbD64z1rMcdn8Qm9d/lWFFhs/ZKc/FZO1sZPcVwOP9B9hXlVl0820h5b0uQlwEpwj4vlmoOlrihrRc25XRBfajpLiiXBucSkfD18ynr503dNVW2RpS6qixxFeiraSpAWCUhZ4VnHorPyqug0bgBEJnk8owmNZIzIeYgvLCgRkrAz5g4qQzJiqjdvDtjKhyCSrdj1+XPWqkxqdqFpG9w30EvQEtEqGeUOKHj/2n9xUe06mXbrfqOCAHuwhKkNJHKVKKRvB9MKSfvRiL8IC/wDKuULUQkNFTLMNQSopVs6A+PU0qyC43hsPIXBC3GnG0rycjBI5HSlRAOUoKF7Q7i5cblELvVqPgHcTnKifOqkTUu5uBUkjte0Ce6DnOcH/AN1COa1RNLWAJUjgXEhdzXM1KjQy/ElSe1bQmOASFJUSonoMgYH1xUM8E+nWmcoF6zzXrNNd45IBwOpxXQTVKJ3NRVHvGnwaYV1PnUUXKVdKFBIUUnaTgHwzXnk1FEjS8Kdjxn5TgbjMuPLP9LaSo/YV5eadYcLbzS21jqlaSCPpUUXkVtdu0XPumg7Alm7Q2HQHZJU4o/A9tUB88jmsU5xW/aQvRe0hZ2FyG09lHQlKVgc7SR9cVmyZekzVSdDGZHaQUOiezS6MadkWv8agds9IS+hwLVgDGCMeuKdt/s3ubFluNrXebeoywkJIUTtKVZ6VYntUBh9KHrg0HCgKSSkcpzjj5/60J1Drj8AQiY8kPSHVlAQ0oJUEDqrJ+YrIzO1vDQ0p5wy0EkjZSLDoWbC01drLJucN92aytptSFHuEpSBkHyKaF2/2YzG7dd7fIvMPtLg202OzBUUKbXnOPH/ep7eube49Efbl4VJb3dp02Dx3Z6EHikrVcX31DLU9LinBntkOAjHhz41Zy3NNaCr9oCL1BON+z23q/E4qLwS7Pgsxnm0tElK0be/9dvT1p9Og7RDmObpszt3LaILqW2eHBt2lf+bp9qFS9YwW3Y6kTS57wCe0RwAgeOcc/wDuvKdSsKtCrm26t1Hhg8nKiE58ulB7yWr0bIxhsJ+aKyPZtpsNRWXhNWWWQ2laFITuAJ+LnrzSoCnWluKlj3l9O1RGUjcFevpXKnucj+CIYsP+Reb7oS2QdFPylOpTOcfJLyEgDYlR2pCfDwJ9TWd6PYtcu8wI92ZX2LhX3kjduXjuAj+3I5HjW0XCxN3uDHsUN2QIypq5D0txAASD3toBP/ckY8x6U1ePZ1p6xxIkuD72HISwoHcFgkk43jHmrr4cV1wAXLm2QEW09As1t9nnZqiMrh9mv3oFnh0gncT4nkcfIVh9m023M01er4qVHU1DJaZZdyFuZwQsYPUDpwcnPlX0PdWUo0uWiCndFIIAzyU8/M1mPsbhsLjt2+bAkFEhbwlNyGz2TmEjaSCPI4wfKmEAAJYJJKrzWhpDGnEXCfKZ/NcaSEsq7RLbaij4sYwrvHj0qu63sabDe1xG+G+wbdRnqoKGc/xX0RrAW1i3PQ1tJjJkJ7QOMtDhacBKjjjjA6+FYj7Ww3O1Sh62B6Sx7myntAlS05weAcdOlK072na7ZSj+yqwRtT6p91kuhDTUdbpSW0ubjjA7qgQQM5+1XN72NwVXcsxbg6iKiF2q1PICipZKgOhGPhJ9KHex+bb7JKm3Ce05FkuNtQ2E9molZJypXp0HPQVY7z7QTEvT8aMhb0JdqWFOdkrIeSHMJSfHqBnpVoRss+0c1bb3cndN3FTiYW14wXEI3KbcyO8R/VlIPpmnLtpGJbdcP2GIl2RHchqcbcewkow2V7vLA2keHXFVLT8xyBeoclhJU404DtAySOhH2Jq6a61DF/43j3Sxn3ttuClpSkFW1Sti0qAJHIAUPtUU1KboTREXVWmnLhaLrIg3Fl1SZLZRlB6qAGCD0xz86j6U0Q3rIS5qriWm463UO9s2V7CDlISdwyNpHU8V32X6jVp20XkKZcJcRvSEtKJOEKCenTvEDPrUz2O3hEODfbPKdcjvymu3aUUHkpSd454yQBVaVBQN0peh9AWvUdlu6lpS3IZlmMEEZ7NTY+Iq5PO7JAOOKm2nRqrVruPYQS5FMMvtyEs8pwR1JUeCoEH51N9jT6rab9GmLLLb0oLZLvc7TlSSpOeo+HnzpqLrOKr2oRHGlynYTVuVDUsIVy5u3ZI48utC5rTsUYc4HZWGDoGAIlyEK6yXnF7koKtuxl3k90AfCNwG0+VZp7ZbC1ZU2BYkOvS5EVQkLWrcCU7eR0Hieg8K1bQs2DNh3xxt5KIjtzfAClbFYwkdOCPP61QPbM21P05apgfQqRb33Iy20A4CVYwOfIJT96jWMBvuoXPo+FWNFaeVqSCmQqZEisW11Md5Kshaw8o4UPXJwPMir9dtFwmLaG0THMwWSgOLbG/akKIBxgDqOceArIbFNW1EuEJtTqXJfZFvs87t7awodPTcc+lXSwX65SNPal/FveZjwQlbYfSSpYIUn5kYCc+lWWWVTHFWHTOhX7ta7au4fkRDDUYveyo9p3hvSOm3w5PB5p7TegX59llWpc4RG2ZKm38o3ulxJ4OQQNpyFD0NGvZ/qhEvSNoZcbcakwltxXm1oUnCRwFA45GMUtD3sIcvT12Q4y65cXHslskKSAEIA48gBU6YPIV63AWFVYHs3eceniVMjpUiWtKRjnbxgkZ4znOPIiu1e0MWrUBXPUl5rcopAU2pJUPMgfPH0pUwAUprPhd1gFuWBex5xlZA/MaIChyfSozgkRrc8hc6TIU5DWtTjxSVEgHHQAfpXKVAPkpZ6aM3iWv3HISjwGMH+2hFhnOsRHX20o3NBZAIJB6etcpU0/FZxyuS7zLlPEOFsJS6lG1KeCCnPNOXptJmg4xlCeB06UqVAFb1JsEVl1t4rQCUlJHpxUiTEZ7VxWzkR+P1pUqndD9qr7UZhL6CllsKz12DNPzbXBj3FaGojCQTk4aSCSpIz4UqVWp2UmyQ2FofTsAHTugDwNOWKM12shRQCdhTkgdDmlSoip3U+wNIW9J3pCsKyMgcV5dt8f8AGI/cHfBKuBzwaVKg8orIUm32qC8/K7WK0sh495SBnoD1obqmywJelrxFcYQltaFrOxIBCkpyDnHUbRSpUIAtFqcRyvnXRiy3qq0LT1MlAPyPB/Q19B2+O0DJSEjCkYP3pUqaOEJO6M2hhtq3J2DH5n817hMobnTEpHdKwcH1rlKg+5TsnyhLK1oaG1O7oKVKlT0S/9k=') center/cover no-repeat;
+      min-height: 46vh;
+    }
+    .hero::after{content:""; position:absolute; inset:0; background: linear-gradient(180deg, rgba(0,0,0,.45), rgba(0,0,0,.6));}
+    .hero > *{position:relative; z-index:2}
+    .bismillah{font-size:18px; color:#fff; opacity:.9}
+    .title{font-size: clamp(28px, 5vw, 48px); font-weight:800}
+    .subtitle{font-size:clamp(16px, 2.5vw, 22px); color:#f3f4f6}
+    .chip{display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,.1); padding:8px 12px; border-radius:999px; border:1px solid rgba(255,255,255,.2)}
+    .cta{display:flex; gap:12px; flex-wrap:wrap}
+    .btn{appearance:none; cursor:pointer; border:none; border-radius:14px; padding:12px 16px; font-weight:700}
+    .btn-primary{background:linear-gradient(135deg, var(--brand), var(--brand-2)); color:#062d1f}
+    .btn-ghost{background:rgba(255,255,255,.12); color:#fff; border:1px solid rgba(255,255,255,.2)}
+    .badges{display:flex; gap:8px; flex-wrap:wrap}
+
+    /* Sections */
+    section{scroll-margin-top:80px}
+    h2.section-title{font-size:clamp(22px,3.2vw,32px); margin:8px 0 16px; letter-spacing:.2px}
+    .grid{display:grid; gap:18px}
+    @media(min-width:900px){
+      .grid-2{grid-template-columns:1.2fr 1fr}
+      .grid-3{grid-template-columns:repeat(3,1fr)}
+    }
+
+    /* About */
+    .about-img{width:160px; height:160px; border-radius:50%; object-fit:cover; border:3px solid rgba(255,255,255,.35); box-shadow:0 6px 20px rgba(0,0,0,.35)}
+    .about p{color:#d1d5db}
+
+    /* Dua Cards */
+    .duas .dua{border-left:4px solid var(--ring)}
+    .dua .ar{font-family: "Noto Naskh Arabic", serif; font-size:20px}
+    .dua .tr{color:#cbd5e1; font-size:15px}
+
+    /* Skills */
+    .skill{display:grid; gap:8px}
+    .bar{height:12px; background:rgba(255,255,255,.08); border-radius:999px; overflow:hidden}
+    .bar > div{height:100%; background:linear-gradient(90deg, var(--brand), var(--accent)); width:0}
+
+    /* Gallery */
+    .gallery{display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:10px}
+    .gallery img{width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:14px; border:1px solid rgba(255,255,255,.1)}
+
+    /* Message Board */
+    .board{display:grid; gap:10px}
+    .note{background: rgba(255,255,255,.05); border:1px dashed rgba(255,255,255,.2); padding:12px; border-radius:12px}
+    .note small{color:var(--subtle)}
+
+    /* Certificate (print) */
+    .cert{background:#fff; color:#111; border-radius:20px; padding:28px; text-align:center}
+    .cert h3{font-size:26px; margin:0}
+    .cert p{color:#111}
+    .cert .line{height:2px; background:#111; margin:14px 0}
+
+    /* Footer */
+    footer{color:#cbd5e1; font-size:14px; padding:20px 0; text-align:center}
+
+    /* Print Styles: only certificate */
+    @media print{
+      body{background:#fff}
+      .nav, .hero, .no-print{display:none !important}
+      .cert{box-shadow:none; border:2px solid #111}
+    }
+  </style>
+</head>
+<body>
+  <!-- Simple confetti canvas -->
+  <canvas id="confetti" class="no-print" style="position:fixed; inset:0; pointer-events:none; z-index:60"></canvas>
+
+  <!-- Navbar -->
+  <header class="nav no-print">
+    <div class="inner container" dir="ltr">
+      <strong>Umrah Mubarak</strong>
+      <nav>
+        <a href="#about">تعریف</a>
+        <a href="#duas">دعائیں</a>
+        <a href="#skills">ہنر</a>
+        <a href="#gallery">تصاویر</a>
+        <a href="#messages">پیغامات</a>
+        <a href="#certificate">سرٹیفکیٹ</a>
+        <a href="#contact">رابطہ</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="container">
+    <div class="hero card">
+      <div class="chip">بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
+      <h1 class="title">الحمدللہ! عمرہ مبارک  رضوان چاچو اور رمشا آپی، </h1>
+      <p class="subtitle">اللہ آپ کے اعمال کو قبول فرمائے اور گھر واپسی پر رحمتیں نازل فرمائے۔</p>
+      <div class="cta no-print">
+        <button class="btn btn-primary" id="celebrateBtn">جشن منائیں 🎉</button>
+        <button class="btn btn-ghost" id="printCertBtn">سرٹیفکیٹ پرنٹ کریں</button>
+      </div>
+      <div class="badges">
+        <span class="chip">#UmrahMubarak</span>
+        <span class="chip">#Alhamdulillah</span>
+        <span class="chip" id="sinceBadge">واپسی کی تاریخ سیٹ کریں</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="container grid grid-2">
+    <div class="card about">
+      <h2 class="section-title">تعارف</h2>
+      <p>یہ ایک پیارا سا ویب پیج ہے جو خاص طور پر رضوان چاچو اور رمشا آپی کی عمرہ سے واپسی پر خوش آمدید کے لیے بنایا گیا ہے۔</p>
+      <p>نیچے دی گئی تاریخ میں واپسی کا دن سیٹ کریں تاکہ یہ صفحہ خود بخود "کتنے دن گزر گئے" دکھائے۔</p>
+      <label class="no-print" for="returnDate">واپسی کی تاریخ منتخب کریں:</label>
+      <input class="no-print" type="date" id="returnDate" style="background:var(--surface); color:var(--text); border:1px solid rgba(255,255,255,.15); border-radius:10px; padding:8px" />
+    </div>
+    <div class="card" style="display:grid; place-items:center; text-align:center">
+      <img src="https://i.postimg.cc/0jTgWqq6/Screenshot-20250825-153000.png" alt="Profile" class="about-img" />
+      <p style="margin-top:10px; color:#cbd5e1"></p>
+    </div>
+  </section>
+
+  <!-- Dua Cards -->
+  <section id="duas" class="container duas grid grid-3">
+    <div class="card dua">
+      <div class="ar">تَقَبَّلَ اللّٰهُ مِنَّا وَمِنْكُمْ</div>
+      <div class="tr">اللہ ہم سب کے اعمال قبول فرمائے۔</div>
+    </div>
+    <div class="card dua">
+      <div class="ar">رَبِّ زِدْنِي عِلْمًا</div>
+      <div class="tr">اے میرے رب! میرے علم میں اضافہ فرما۔</div>
+    </div>
+    <div class="card dua">
+      <div class="ar">اَللّٰهُمَّ اجْعَلْ هٰذَا الْبَلَدَ آمِنًا</div>
+      <div class="tr">اے اللہ! اس شہر کو امن والا بنا۔</div>
+    </div>
+  </section>
+
+  <!-- Skills / Family Contributions (fun) -->
+  <section id="skills" class="container card">
+    <h2 class="section-title">ہمارا پیار (Progress)</h2>
+    <div class="grid">
+      <div class="skill"><label>دعائیں</label><div class="bar"><div style="--val:92%"></div></div></div>
+      <div class="skill"><label>خوشیاں</label><div class="bar"><div style="--val:88%"></div></div></div>
+      <div class="skill"><label>تحفے</label><div class="bar"><div style="--val:73%"></div></div></div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section id="gallery" class="container card">
+    <h2 class="section-title">یادگار لمحات (Gallery)</h2>
+    <p style="color:#cbd5e1"> :</p>
+    <div class="gallery no-print">
+      <img src="https://i.postimg.cc/qMtVD4M1/IMG-20250825-WA0024.jpg" alt="">
+      <img src="https://i.postimg.cc/TP04Y43y/IMG-20250825-WA0023.jpg" alt="">
+      <img src="https://i.postimg.cc/v8CbscKJ/IMG-20250825-WA0020.jpg" alt="">
+      <img src="https://i.postimg.cc/L6FwDfw8/IMG-20250825-WA0022.jpg" alt="">
+      <img src="https://i.postimg.cc/fbyryvtB/IMG-20250825-WA0018.jpg" alt="">
+      <img src="https://i.postimg.cc/q7FZ3C20/IMG-20250825-WA0019.jpg" alt="">
+      <img src="https://i.postimg.cc/L6sfrQrC/Screenshot-20250825-180502.png" alt="">
+      <img src="https://i.postimg.cc/9MpRky1H/Screenshot-20250825-180413.png" alt="">
+      <img src="https://i.postimg.cc/15Tgbm0X/Screenshot-20250823-184811.png" alt="">
+          </section>
+
+  <!-- Tasbih Counter -->
+  <section class="container card no-print" id="tasbih">
+    <h2 class="section-title">تسبیح کاؤنٹر</h2>
+    <p style="color:#cbd5e1">ذکر کے لیے سادہ کاؤنٹر </p>
+    <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap">
+      <button class="btn btn-primary" id="minusBtn">−1</button>
+      <button class="btn btn-primary" id="plusBtn">+1</button>
+      <button class="btn btn-ghost" id="resetBtn">ری سیٹ</button>
+      <label>ہدف:
+        <select id="targetSelect" style="background:var(--surface); color:var(--text); border:1px solid rgba(255,255,255,.15); border-radius:10px; padding:8px">
+          <option>33</option>
+          <option>66</option>
+          <option selected>99</option>
+        </select>
+      </label>
+      <strong id="count" style="font-size:28px; margin-inline-start:auto">0</strong>
+    </div>
+      <div id="progressText" style="margin-top:8px; color:#9ca3af">0 / 99 مکمل</div>
+  </section>
+
+  <!-- Message Board -->
+  <section id="messages" class="container card no-print">
+    <h2 class="section-title">خاندانی پیغامات</h2>
+    <div class="board" id="board"></div>
+    <div style="display:grid; gap:8px; margin-top:10px">
+      <input id="from" placeholder="نام" style="background:var(--surface); color:var(--text); border:1px solid rgba(255,255,255,.15); border-radius:10px; padding:10px">
+      <textarea id="msg" placeholder="آپ کا پیغام" rows="3" style="background:var(--surface); color:var(--text); border:1px solid rgba(255,255,255,.15); border-radius:10px; padding:10px"></textarea>
+      <button class="btn btn-primary" id="addMsg">پیغام شامل کریں</button>
+    </div>
+  </section>
+
+  <!-- Certificate -->
+  <section id="certificate" class="container">
+    <div class="card cert">
+      <h3>عمرہ مبارک سرٹیفکیٹ</h3>
+      <div class="line"></div>
+      <p>ہم سب کی طرف سے <strong>رضوان چاچو اور رمشا آپی</strong> کو عمرہ کی ادائیگی پر دلی مبارکباد۔ دعا ہے کہ اللہ تعالیٰ اسے قبول فرمائے اور صحت و ایمان میں اضافہ فرمائے۔ آمین۔</p>
+      <div class="line"></div>
+      <p>تاریخ: <span id="today"></span></p>
+    </div>
+  </section>
+
+  <footer class="container">
+    © <span id="year"></span> — ہمارے دلوں کی خوشی۔
+  </footer>
+
+  <script>
+    // ===== Helper: Format Date (dd mmmm yyyy) =====
+    const fmtDate = d => d.toLocaleDateString('ur-PK', { day:'2-digit', month:'long', year:'numeric' });
+
+    // ===== Today & Year =====
+    const todayEl = document.getElementById('today');
+    const yearEl = document.getElementById('year');
+    const now = new Date();
+    todayEl.textContent = fmtDate(now);
+    yearEl.textContent = now.getFullYear();
+
+    // ===== Return Date Badge / Storage =====
+    const dateInput = document.getElementById('returnDate');
+    const sinceBadge = document.getElementById('sinceBadge');
+    const RETURN_KEY = 'umrah:returnDate';
+
+    const updateSince = () => {
+      const v = localStorage.getItem(RETURN_KEY);
+      if(!v){ sinceBadge.textContent = 'واپسی کی تاریخ سیٹ کریں'; return; }
+      const d = new Date(v);
+      const diff = Math.floor((Date.now() - d.getTime()) / (1000*60*60*24));
+      if(isNaN(diff)) { sinceBadge.textContent = 'واپسی کی تاریخ درست کریں'; return; }
+      sinceBadge.textContent = diff >= 0 ? `${diff} دن گزر گئے` : `${Math.abs(diff)} دن باقی`;
+      dateInput.value = v.split('T')[0];
+    };
+
+    dateInput?.addEventListener('change', e => {
+      const val = new Date(e.target.value);
+      if(!isNaN(val)){
+        localStorage.setItem(RETURN_KEY, val.toISOString());
+        updateSince();
+      }
+    });
+    updateSince();
+
+    // ===== Skills bars animate =====
+    const bars = document.querySelectorAll('.bar > div');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(en => {
+        if(en.isIntersecting){
+          const val = en.target.style.getPropertyValue('--val') || '80%';
+          en.target.animate([{width:'0%'},{width:val}], {duration:900, fill:'forwards', easing:'ease-out'});
+        }
+      })
+    }, { threshold:.3 });
+    bars.forEach(b => observer.observe(b));
+
+    // ===== Tasbih Counter =====
+    const plusBtn = document.getElementById('plusBtn');
+    const minusBtn = document.getElementById('minusBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const countEl = document.getElementById('count');
+    const targetSel = document.getElementById('targetSelect');
+    const progressText = document.getElementById('progressText');
+    const KEY='tasbih:count', TKEY='tasbih:target';
+
+    const load = () => ({count: Number(localStorage.getItem(KEY) || 0), target: Number(localStorage.getItem(TKEY) || targetSel.value)});
+    const save = (c,t) => { localStorage.setItem(KEY,c); localStorage.setItem(TKEY,t) };
+    const render = () => { 
+      const {count,target} = load();
+      countEl.textContent = count;
+      progressText.textContent = `${count} / ${target} مکمل`;
+    };
+    plusBtn.addEventListener('click', () => { const s=load(); s.count++; save(s.count, s.target); render(); });
+    minusBtn.addEventListener('click', () => { const s=load(); s.count=Math.max(0,s.count-1); save(s.count, s.target); render(); });
+    resetBtn.addEventListener('click', () => { save(0, load().target); render(); });
+    targetSel.addEventListener('change', e => { save(load().count, Number(e.target.value)); render(); });
+    render();
+
+    // ===== Message Board =====
+    const board = document.getElementById('board');
+    const addBtn = document.getElementById('addMsg');
+    const fromInput = document.getElementById('from');
+    const msgInput = document.getElementById('msg');
+    const MKEY='umrah:messages';
+    const getMsgs = () => JSON.parse(localStorage.getItem(MKEY) || '[]');
+    const setMsgs = m => localStorage.setItem(MKEY, JSON.stringify(m));
+
+    const paint = () => {
+      board.innerHTML = '';
+      getMsgs().forEach(({from, text, at}, i) => {
+        const d = document.createElement('div'); d.className='note';
+        d.innerHTML = `<strong>${from || 'نامعلوم'}</strong><br>${text}<br><small>${fmtDate(new Date(at))}</small>`;
+        d.addEventListener('dblclick', () => { // remove on double click
+          const arr = getMsgs(); arr.splice(i,1); setMsgs(arr); paint();
+        });
+        board.appendChild(d);
+      })
+    }
+    addBtn.addEventListener('click', () => {
+      const from = fromInput.value.trim();
+      const text = msgInput.value.trim();
+      if(!text) return alert('پیغام لکھیں');
+      const arr = getMsgs();
+      arr.unshift({from, text, at: new Date().toISOString()});
+      setMsgs(arr); paint(); msgInput.value='';
+    });
+    paint();
+
+    // ===== Print Certificate =====
+    document.getElementById('printCertBtn').addEventListener('click', () => window.print());
+
+    // ===== Simple Confetti =====
+    const canvas = document.getElementById('confetti');
+    const ctx = canvas.getContext('2d');
+    let W=canvas.width=innerWidth, H=canvas.height=innerHeight;
+    addEventListener('resize', ()=>{W=canvas.width=innerWidth; H=canvas.height=innerHeight});
+
+    const colors=['#22c55e','#10b981','#f59e0b','#eab308','#a3e635','#34d399'];
+    function confettiBurst(){
+      const parts = Array.from({length:120}, () => ({
+        x: W/2, y: H/3, r: Math.random()*3+2, a: Math.random()*Math.PI*2,
+        vx: (Math.random()*2-1)*5, vy: (Math.random()*-2-3),
+        color: colors[Math.floor(Math.random()*colors.length)], life: 0
+      }));
+      let frame=0;
+      const loop = () => {
+        ctx.clearRect(0,0,W,H);
+        frame++;
+        parts.forEach(p=>{
+          p.vy += 0.12; p.x += p.vx; p.y += p.vy; p.life+=1;
+          ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fillStyle=p.color; ctx.fill();
+        });
+        if(frame<180) requestAnimationFrame(loop);
+      };
+      loop();
+    }
+    document.getElementById('celebrateBtn').addEventListener('click', confettiBurst);
+  </script>
+</body>
+</html>

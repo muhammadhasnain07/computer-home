@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JavaScript Practice</title>
+</head>
+<body style="font-family: Arial, sans-serif; padding:20px;">
+
+  <h1>JavaScript Practice Tasks</h1>
+
+  <!-- Task 1: Variable and Console -->
+  <h2>Task 1: Variable aur Console</h2>
+  <p>Console me result dekhne ke liye <b>F12 → Console</b open karo.</p>
+
+  <!-- Task 2: Function Alert -->
+  <h2>Task 2: Simple Function</h2>
+  <button onclick="greetUser()">Say Hello</button>
+
+  <!-- Task 3: Button Click Event -->
+  <h2>Task 3: Button Click Event</h2>
+  <button onclick="sayHello()">Click Me</button>
+
+  <!-- Task 4: Text Change -->
+  <h2 id="title">Task 4: Change this Text</h2>
+  <button onclick="changeText()">Change Text</button>
+
+  <script>
+    // ========== Task 1 ==========
+    let name = "Hasnain";
+    let age = 20;
+    console.log("Mera naam " + name + " hai aur meri age " + age + " hai.");
+
+    // ========== Task 2 ==========
+    function greetUser() {
+      alert("Hello Hasnain! 👋");
+    }
+
+    // ========== Task 3 ==========
+    function sayHello() {
+      alert("Button clicked! 🎉");
+    }
+
+    // ========== Task 4 ==========
+    function changeText() {
+      document.getElementById("title").innerText = "Welcome to Birds World 🐦";
+    }
+  </script>
+
+</body>
+</html>

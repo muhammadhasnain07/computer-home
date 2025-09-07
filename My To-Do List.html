@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My To-Do List</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #ffecd2, #fcb69f);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      width: 350px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 15px;
+      color: #333;
+    }
+
+    input {
+      padding: 8px;
+      width: 70%;
+      border: 2px solid #fcb69f;
+      border-radius: 8px;
+      outline: none;
+    }
+
+    button {
+      padding: 8px 12px;
+      margin-left: 5px;
+      border: none;
+      background: #f77f00;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #d45d00;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 20px;
+    }
+
+    ul li {
+      background: #ffe5d9;
+      margin: 8px 0;
+      padding: 10px;
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 16px;
+    }
+
+    ul li span {
+      color: red;
+      cursor: pointer;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>My To-Do List</h1>
+    <input type="text" id="taskInput" placeholder="Enter new task...">
+    <button onclick="addTask()">Add Task</button>
+    <ul id="taskList"></ul>
+  </div>
+
+  <script>
+    function addTask() {
+      let input = document.getElementById("taskInput");
+      let taskText = input.value.trim();
+
+      if (taskText === "") {
+        alert("Please enter a task!");
+        return;
+      }
+
+      let li = document.createElement("li");
+      li.innerHTML = `${taskText} <span onclick="this.parentElement.remove()">❌</span>`;
+      
+      document.getElementById("taskList").appendChild(li);
+      input.value = "";
+    }
+  </script>
+</body>
+</html>
