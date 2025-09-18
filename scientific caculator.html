@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Scientific Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #1e272e;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .calculator {
+      background: #2f3640;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+      width: 380px;
+    }
+
+    .display {
+      background: #353b48;
+      padding: 20px;
+      font-size: 28px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      text-align: right;
+      min-height: 50px;
+      overflow-x: auto;
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+    }
+
+    button {
+      padding: 15px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background: #718093;
+      color: white;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      background: #596275;
+    }
+
+    .operator {
+      background: #e67e22;
+    }
+
+    .operator:hover {
+      background: #d35400;
+    }
+
+    .equal {
+      background: #27ae60;
+      grid-column: span 2;
+    }
+
+    .equal:hover {
+      background: #1e8449;
+    }
+
+    .clear {
+      background: #e74c3c;
+    }
+
+    .clear:hover {
+      background: #c0392b;
+    }
+
+    .function {
+      background: #9b59b6;
+    }
+
+    .function:hover {
+      background: #8e44ad;
+    }
+
+    .zero{
+        grid-column: span 2;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <div class="display" id="display">0</div>
+    <div class="buttons">
+      <!-- Row 1 -->
+      <button class="clear">C</button>
+      <button class="function">⌫</button>
+      <button class="function">(</button>
+      <button class="function">)</button>
+      <button class="operator">/</button>
+
+      <!-- Row 2 -->
+      <button class="function">π</button>
+      <button class="function">e</button>
+      <button class="function">^</button>
+      <button class="function">√</button>
+      <button class="operator">*</button>
+
+      <!-- Row 3 -->
+      <button class="function">sin</button>
+      <button class="function">cos</button>
+      <button class="function">tan</button>
+      <button class="function">log</button>
+      <button class="operator">-</button>
+
+      <!-- Row 4 -->
+      <button>7</button>
+      <button>8</button>
+      <button>9</button>
+      <button class="function">ln</button>
+      <button class="operator">+</button>
+
+      <!-- Row 5 -->
+      <button>4</button>
+      <button>5</button>
+      <button>6</button>
+      <button>.</button>
+      <button class="equal">=</button>
+
+      <!-- Row 6 -->
+      <button>1</button>
+      <button>2</button>
+      <button>3</button>
+      <button class="zero">0</button>
+    </div>
+  </div>
+
+  <script>
+    const display = document.getElementById("display");
+    const buttons = document.querySelectorAll("button");
+
+    let currentInput = "";
+
+    function updateDisplay() {
+      display.innerText = currentInput || "0";
+    }
+
+    function calculate() {
+      try {
+        let expression = currentInput;
+
+        // Replace constants and functions with Math equivalents
+        expression = expression.replace(/π/g, "Math.PI");
+        expression = expression.replace(/e/g, "Math.E");
+        expression = expression.replace(/√/g, "Math.sqrt");
+        expression = expression.replace(/\^/g, "**");
+        expression = expression.replace(/sin/g, "Math.sin");
+        expression = expression.replace(/cos/g, "Math.cos");
+        expression = expression.replace(/tan/g, "Math.tan");
+        expression = expression.replace(/log/g, "Math.log10");
+        expression = expression.replace(/ln/g, "Math.log");
+
+        currentInput = eval(expression).toString();
+      } catch {
+        currentInput = "Error";
+      }
+      updateDisplay();
+    }
+
+    buttons.forEach(button => {
+      button.addEventListener("click", () => {
+        const value = button.innerText;
+
+        if (button.classList.contains("clear")) {
+          currentInput = "";
+          updateDisplay();
+        } 
+        else if (value === "⌫") {
+          currentInput = currentInput.slice(0, -1);
+          updateDisplay();
+        } 
+        else if (button.classList.contains("equal")) {
+          calculate();
+        } 
+        else {
+          currentInput += value;
+          updateDisplay();
+        }
+      });
+    });
+
+    updateDisplay();
+  </script>
+</body>
+</html>

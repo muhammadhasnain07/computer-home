@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Portfolio</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      line-height: 1.6;
+    }
+
+    /* Navbar */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #333;
+      padding: 10px 0;
+      text-align: center;
+      z-index: 1000;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-size: 18px;
+    }
+    nav a:hover {
+      color: yellow;
+    }
+
+    /* Hero */
+    .hero {
+      height: 100vh;
+      background: linear-gradient(to right, darkblue, purple);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .hero h1 {
+      font-size: 50px;
+    }
+    .hero p {
+      font-size: 20px;
+      margin: 10px 0;
+    }
+    .hero button {
+      padding: 10px 20px;
+      margin-top: 15px;
+      font-size: 18px;
+      border: none;
+      background: yellow;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    /* Sections */
+    section {
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: darkblue;
+    }
+
+    /* Skills */
+    .skill {
+      margin: 10px 0;
+    }
+    .skill-bar {
+      background: #ddd;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    .skill-level {
+      background: darkblue;
+      color: white;
+      padding: 5px;
+      width: 0;
+      text-align: right;
+    }
+
+    /* Gallery */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: white;
+      padding: 15px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      border-radius: 10px;
+      transition: transform 0.3s;
+    }
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    /* Contact */
+    form {
+      display: flex;
+      flex-direction: column;
+      max-width: 400px;
+      margin: auto;
+    }
+    input, textarea {
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button[type="submit"] {
+      background: darkblue;
+      color: white;
+      padding: 10px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+    }
+
+    /* Footer */
+    footer {
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <a href="#hero">Home</a>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#gallery">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <h1>Hi, I'm Hasnain</h1>
+    <p>Aspiring Web Developer</p>
+    <button onclick="alert('Thanks for visiting!')">Click Me</button>
+  </section>
+
+  <!-- About Section -->
+  <section id="about">
+    <h2>About Me</h2>
+    <p>
+      I am learning HTML, CSS, and JavaScript to become a frontend developer. 
+      This is my practice project.
+    </p>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills">
+    <h2>My Skills</h2>
+    <div class="skill">
+      HTML
+      <div class="skill-bar"><div class="skill-level" data-level="90%">90%</div></div>
+    </div>
+    <div class="skill">
+      CSS
+      <div class="skill-bar"><div class="skill-level" data-level="75%">75%</div></div>
+    </div>
+    <div class="skill">
+      JavaScript
+      <div class="skill-bar"><div class="skill-level" data-level="60%">60%</div></div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section id="gallery">
+    <h2>My Projects</h2>
+    <div class="gallery">
+      <div class="card">Project 1: Landing Page</div>
+      <div class="card">Project 2: Calculator</div>
+      <div class="card">Project 3: To-Do List</div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <form id="contactForm">
+      <input type="text" id="name" placeholder="Your Name">
+      <input type="email" id="email" placeholder="Your Email">
+      <textarea id="message" rows="4" placeholder="Your Message"></textarea>
+      <button type="submit">Send</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; <span id="year"></span> Hasnain's Portfolio. All rights reserved.</p>
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    // Dynamic year in footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Animate skill bars
+    const skills = document.querySelectorAll('.skill-level');
+    window.addEventListener('scroll', () => {
+      skills.forEach(skill => {
+        const bar = skill.getAttribute('data-level');
+        skill.style.width = bar;
+      });
+    });
+
+    // Contact form validation
+    const form = document.getElementById("contactForm");
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const message = document.getElementById("message").value;
+      
+      if(name === "" || email === "" || message === "") {
+        alert("Please fill in all fields.");
+      } else {
+        alert("Thank you, " + name + "! Your message has been sent.");
+        form.reset();
+      }
+    });
+  </script>
+
+</body>
+</html>
